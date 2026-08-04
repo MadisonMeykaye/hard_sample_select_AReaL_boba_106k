@@ -31,6 +31,9 @@ def main():
     print(f"  Middle (1/3 or 2/3): {len(middle)}")
     print(f"  Hard   (0/3):       {len(hard)}")
 
+    random.shuffle(middle)
+    random.shuffle(hard)
+    
     selected = []
     # 优先取 middle
     selected.extend(middle[:args.target])
