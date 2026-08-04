@@ -5,9 +5,34 @@ from tqdm import tqdm
 from collections import Counter
 
 def extract_box_answer(text):
-    matches = re.findall(r"\\boxed\{([^}]*)\}", text)
-    if matches:
-        return matches[-1].strip()
+
+    start=text.rfind("\\boxed")
+
+    if start==-1:
+        return None
+
+    content=text[start:]
+
+    left=content.find("{")
+    
+    if left==-1:
+        return None
+
+
+    count=0
+
+    for i in range(left,len(content)):
+
+        if content[i]=="{":
+            count+=1
+
+        elif content[i]=="}":
+            count-=1
+
+            if count==0:
+                return content[left+1:i]
+
+
     return None
 
 def normalize_math_str(s):
