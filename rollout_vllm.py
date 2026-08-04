@@ -39,7 +39,7 @@ def main():
         dtype="float16",
         trust_remote_code=True,
         gpu_memory_utilization=args.gpu_mem_util,
-        max_model_len=args.max_tokens,
+        max_model_len=4096,
     )
 
     params = SamplingParams(
